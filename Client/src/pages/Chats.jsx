@@ -1,4 +1,5 @@
 import React from 'react'
+import AppLayout from '../components/styles/layout/AppLayout'
 
 const Chats = () => {
   return (
@@ -6,4 +7,4 @@ const Chats = () => {
   )
 }
 
-export default Chats
+export default AppLayout()(Chats)
