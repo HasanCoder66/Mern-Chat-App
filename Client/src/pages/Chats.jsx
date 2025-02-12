@@ -1,5 +1,5 @@
 import React from 'react'
-import AppLayout from '../components/styles/layout/AppLayout'
+import AppLayout from '../components/layout/AppLayout'
 
 const Chats = () => {
   return (
