@@ -3,8 +3,9 @@ import Header from "./Header";
 import Title from "../shared/Title";
 import { Grid } from "@mui/material";
 import ChatList from "./ChatList";
-import { sampleChats } from "../constants/sampleChats";
+import { sampleChats } from "../constants/sampleData";
 import { useParams } from "react-router-dom";
+import Profile from "../specific/Profile";
 
 const AppLayout = () => (WrappedComponent) => {
   return (props) => {
@@ -58,7 +59,7 @@ const AppLayout = () => (WrappedComponent) => {
               // height:"100%"
             }}
           >
-            Third
+            <Profile />
           </Grid>
         </Grid>
         {/* <div>Footer</div> */}

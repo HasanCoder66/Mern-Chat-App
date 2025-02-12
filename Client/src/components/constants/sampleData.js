@@ -15,3 +15,60 @@ export const sampleChats = [
     members: ["1", "2"],
   },
 ];
+
+
+
+export const sampleUsers = [
+  {
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Hasan",
+    _id: "1",
+  },
+  {
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Ahsan",
+    _id: "2",
+  },
+  {
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Rizwan",
+    _id: "3",
+  },
+  {
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Mukhtar",
+    _id: "4",
+  },
+  {
+    avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Inno",
+    _id: "5",
+  },
+  ]
+
+
+
+export const sampleNotifications = [
+  {
+    sender :{
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Hasan",
+    },
+    _id: "1",
+  },
+  {
+    sender :{
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Altaf",
+    },
+    _id: "2",
+  },
+  {
+    sender :{
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
+    name: "Jaffar",
+    },
+    _id: "3",
+  },
+  
+  ]
