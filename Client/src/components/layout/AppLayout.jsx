@@ -51,7 +51,7 @@ const AppLayout = () => (WrappedComponent) => {
             item
             md={4}
             lg={3}
-            height={"100%"}
+            height="calc(100vh -4rem)"
             sx={{
               display: { xs: "none", md: "block" },
               padding: "2rem",

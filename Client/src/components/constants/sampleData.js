@@ -16,8 +16,6 @@ export const sampleChats = [
   },
 ];
 
-
-
 export const sampleUsers = [
   {
     avatar: "https://www.w3schools.com/howto/img_avatar.png",
@@ -44,31 +42,63 @@ export const sampleUsers = [
     name: "Inno",
     _id: "5",
   },
-  ]
-
-
+];
 
 export const sampleNotifications = [
   {
-    sender :{
+    sender: {
       avatar: "https://www.w3schools.com/howto/img_avatar.png",
-    name: "Hasan",
+      name: "Hasan",
     },
     _id: "1",
   },
   {
-    sender :{
+    sender: {
       avatar: "https://www.w3schools.com/howto/img_avatar.png",
-    name: "Altaf",
+      name: "Altaf",
     },
     _id: "2",
   },
   {
-    sender :{
+    sender: {
       avatar: "https://www.w3schools.com/howto/img_avatar.png",
-    name: "Jaffar",
+      name: "Jaffar",
     },
     _id: "3",
   },
-  
-  ]
+];
+
+export const sampleMessages = [
+  {
+    attatchments: [
+      {
+        public_id: "123456789",
+        url: "https://www.w3schools.com/howto/img_avatar.png",
+      },
+    ],
+    content: "Hi",
+    _id: "aldjfa;lsjdfalhbn123",
+    sender: {
+      name: "Hasan",
+      _id: "user._id",
+    },
+    chat: "chatId",
+    createdAt: "2024-02-12T10:41:30.630Z",
+  },
+  {
+    attatchments: [
+      {
+        public_id: "12345678927879",
+        url: "https://www.w3schools.com/howto/img_avatar.png",
+      },
+    ],
+    content: "Hello",
+    _id: "aldjfa;lsjdfalhbn123lkj",
+    sender: {
+      name: "Hasan 66",
+      _id: "214512fadafgagsdf",
+    },
+    chat: "chatId",
+    createdAt: "2024-02-12T10:41:30.630Z",
+  },
+];
