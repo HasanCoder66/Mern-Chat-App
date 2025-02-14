@@ -1,5 +1,6 @@
 import { FileOpen as FileOpenIcon } from "@mui/icons-material";
 import React from "react";
+import { transformImage } from "../../lib/features";
 
 const RenderAttatchment = (file, url) => {
   switch (file) {

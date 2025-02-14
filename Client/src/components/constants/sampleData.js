@@ -70,11 +70,11 @@ export const sampleNotifications = [
 
 export const sampleMessages = [
   {
-    attatchments: [
-      {
-        public_id: "123456789",
-        url: "https://www.w3schools.com/howto/img_avatar.png",
-      },
+    attachment: [
+      // {
+      //   public_id: "123456789",
+      //   url: "https://www.w3schools.com/howto/img_avatar.png",
+      // },
     ],
     content: "Hi",
     _id: "aldjfa;lsjdfalhbn123",
@@ -86,13 +86,14 @@ export const sampleMessages = [
     createdAt: "2024-02-12T10:41:30.630Z",
   },
   {
-    attatchments: [
+    attachment: [
       {
         public_id: "12345678927879",
         url: "https://www.w3schools.com/howto/img_avatar.png",
       },
     ],
-    content: "Hello",
+    content: "",
+    // content: "Hello",
     _id: "aldjfa;lsjdfalhbn123lkj",
     sender: {
       name: "Hasan 66",
@@ -102,3 +103,14 @@ export const sampleMessages = [
     createdAt: "2024-02-12T10:41:30.630Z",
   },
 ];
+
+
+
+export const sampleGroups = [
+  {
+    group: "hasan"
+  },
+  {
+    group: "hasan"
+  },
+]

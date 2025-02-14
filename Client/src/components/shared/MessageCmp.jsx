@@ -4,11 +4,12 @@ import React, { memo } from "react";
 import { fileFormat } from "../../lib/features";
 import RenderAttatchment from "./RenderAttatchment";
 
-const MessageCmp = ({ message, user }) => {
-  const { content, createdAt, sender, attactments = [] } = message;
-
+const MessageCmp = ({ message, user,  }) => {
+  const { content, createdAt, sender, attachment = [] } = message;
+  // console.log(attachment);
   const sameSender = sender?._id === user?._id;
   const timeAgo = moment(createdAt).fromNow();
+
   return (
     <div
       style={{
@@ -30,8 +31,8 @@ const MessageCmp = ({ message, user }) => {
       {content && <Typography> {content}</Typography>}
 
       {/* Attatchment  */}
-      {attactments.length > 0 &&
-        attactments.map((attactment, index) => {
+      {attachment.length > 0 &&
+        attachment.map((attactment, index) => {
           const url = attactment.url;
           const file = fileFormat(url);
 
@@ -39,14 +40,14 @@ const MessageCmp = ({ message, user }) => {
             <Box key={index}>
               <a
                 target="_blank"
-                href=""
+                href={url}
                 download
                 style={{
                   color: "black",
                 }}
               >
-
                 {RenderAttatchment(file, url)}
+                {/* sasd */}
               </a>
             </Box>
           );

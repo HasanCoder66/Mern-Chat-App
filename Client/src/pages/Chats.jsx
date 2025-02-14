@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import AppLayout from "../components/layout/AppLayout";
 import { IconButton, Stack } from "@mui/material";
 import {
@@ -22,6 +22,7 @@ const user = {
 }
 const Chats = () => {
   const containerRef = useRef(null);
+  // const [message, setMessage] = useState(sampleMessages) 
   return (
     <>
       <Stack
@@ -37,6 +38,7 @@ const Chats = () => {
         }}
       >
         {sampleMessages?.map((message,index) => (
+          // console.log(message)
           <MessageCmp key={index} message={message} user={user}/>
         ))}
       </Stack>
