@@ -30,6 +30,7 @@ const AppLayout = () => (WrappedComponent) => {
               display: { xs: "none", sm: "block" },
             }}
             height={"100%"}
+            overflow={"auto"}
           >
             <ChatList
               chats={sampleChats}

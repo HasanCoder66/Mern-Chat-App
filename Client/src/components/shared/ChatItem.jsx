@@ -36,7 +36,7 @@ const ChatItem = ({
         {/* Avatar Card  */}
         {/* <AvatarCard avatar={avatar} name={name} /> */}
         <Stack>
-          <Typography>{name}</Typography>
+          <Typography color="white">{name}</Typography>
           {newMessageAlert && (
             <Typography>{newMessageAlert.count} New Message</Typography>
           )}

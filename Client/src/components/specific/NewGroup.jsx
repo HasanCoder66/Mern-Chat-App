@@ -31,7 +31,7 @@ const NewGroup = () => {
     );
   };
 
-  console.log(selectedMembers);
+  // console.log(selectedMembers);
 
   const submitHandler = () => {};
 
