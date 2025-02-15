@@ -11,6 +11,10 @@ const Chats = lazy(() => import("./pages/Chats"));
 const Groups = lazy(() => import("./pages/Groups"));
 
 const AdminLogin = lazy(() => import("./pages/Admin/AdminLogin"));
+const Dashboard = lazy(() => import("./pages/Admin/Dashboard"));
+const UserManagement = lazy(() => import("./pages/Admin/UserManagement"))
+const ChatsManagement = lazy(() => import("./pages/Admin/ChatsManagement"))
+const MessagesManagement = lazy(() => import("./pages/Admin/MessagesManagement"))
 
 const App = () => {
   let user = true;
@@ -33,6 +37,10 @@ const App = () => {
             }
           />
           <Route path="/admin" element={<AdminLogin />} />
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/users" element={<UserManagement />} />
+          <Route path="/admin/chats" element={<ChatsManagement />} />
+          <Route path="/admin/messages" element={<MessagesManagement />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
