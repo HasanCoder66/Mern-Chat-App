@@ -203,3 +203,25 @@ export const sampleGroups = [
     group: "hasan",
   },
 ];
+
+
+export const dashboardData = {
+  user: [
+    {
+      _id :"1",
+      name :"Hasan",
+      username :"hasancoder66",
+      avatar :"https://www.w3schools.com/howto/img_avatar.png",
+      friends:20,
+      groups : 5,
+    },
+    {
+      _id :"2",
+      name :"Hassan",
+      username :"hasancoder_ash",
+      avatar :"https://www.w3schools.com/howto/img_avatar.png",
+      friends:200,
+      groups : 55,
+    },
+  ]
+}
