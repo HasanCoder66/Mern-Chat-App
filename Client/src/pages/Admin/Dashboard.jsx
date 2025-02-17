@@ -22,12 +22,13 @@ import {
   SearchField,
 } from "../../components/styles/StyledComponents";
 import { mainColor } from "../../components/constants/color";
+import { DoughnutChart, LineChart } from "../../components/specific/Charts";
 const Dashboard = () => {
   const Appbar = (
     <Paper
       elevation={3}
       sx={{
-        margin: "2rem",
+        margin: "1rem",
         padding: "2rem 1rem",
         borderRadius: "1rem",
       }}
@@ -83,21 +84,32 @@ const Dashboard = () => {
       <Container component="main">
         {Appbar}
 
-        <Stack direction={"row"} spacing={"2rem"} flexWrap={"wrap"}>
+        <Stack direction={{
+          xs:"column",
+          lg:"row"
+        }} 
+        // spacing={"2rem"} 
+        flexWrap={"wrap"} justifyContent={"center"}
+        alignItems={{
+           xs:"center",
+          lg:"stretch"
+        }}
+        sx={{gap:"2rem"}}
+        >
           <Paper
             elevation={"3"}
             sx={{
               padding: "2rem 3.5rem",
               borderRadius: "1rem",
               width: "100%",
-              maxWidth: "45rem",
-              height: "25rem",
+              maxWidth: "41rem",
+              // height: "25rem",
             }}
           >
-            <Typography margin={"2rem 0r"} variant="h4">
+            <Typography margin={"2rem 0"} variant="h4">
               Last Messages
             </Typography>
-            Chat
+            <LineChart value={[23,56,65,1,15,75]}/>
           </Paper>
 
           <Paper
@@ -112,10 +124,12 @@ const Dashboard = () => {
               width: { xs: "100%", sm: "50%" },
               width: "100%",
               maxWidth: "25rem",
-              height: "25rem",
+              // height: "25rem",
             }}
           >
-            {"Dougnut   Chart"}
+            <DoughnutChart 
+            value={[29,66]} labels={["Single Chats", "Group Chats"]}
+            />
 
             <Stack
               position={"absolute"}
@@ -157,7 +171,7 @@ const Widget = ({ Icon, title, value }) => {
             justifyContent: "center",
             alignItems: "center",
             color: "rgba(0,0,0,0.9) ",
-            border:`5px solid ${mainColor} `
+            border: `5px solid ${mainColor} `,
             // backgroundColor: mainColor
           }}
         >
