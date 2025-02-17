@@ -204,24 +204,59 @@ export const sampleGroups = [
   },
 ];
 
-
 export const dashboardData = {
   user: [
     {
-      _id :"1",
-      name :"Hasan",
-      username :"hasancoder66",
-      avatar :"https://www.w3schools.com/howto/img_avatar.png",
-      friends:20,
-      groups : 5,
+      _id: "1",
+      name: "Hasan",
+      username: "hasancoder66",
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
+      friends: 20,
+      groups: 5,
     },
     {
-      _id :"2",
-      name :"Hassan",
-      username :"hasancoder_ash",
-      avatar :"https://www.w3schools.com/howto/img_avatar.png",
-      friends:200,
-      groups : 55,
+      _id: "2",
+      name: "Hassan",
+      username: "hasancoder_ash",
+      avatar: "https://www.w3schools.com/howto/img_avatar.png",
+      friends: 200,
+      groups: 55,
     },
-  ]
-}
+  ],
+  chats: [
+    {
+      _id: "1",
+      name: "Faaltu Group",
+      username: "hasancoder66",
+      avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+      groupChat: false,
+      members: [
+        { _id: "1", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
+        { _id: "2", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
+      ],
+      totalMembers: 2,
+      totalMessages: 5,
+      creator: {
+        name: "Inno Sufiyan",
+        avatar: "https://www.w3schools.com/howto/img_avatar.png",
+      },
+    },
+    {
+      _id: "2",
+      name: "Developer Group",
+      username: "hasancoder66",
+      avatar: ["https://www.w3schools.com/howto/img_avatar.png"],
+      groupChat: true,
+      members: [
+        { _id: "1", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
+        { _id: "2", avatar: "https://www.w3schools.com/howto/img_avatar.png" },
+      ],
+      totalMembers: 2,
+      totalMessages: 20,
+      creator: {
+        name: "Jaffar Aman",
+        avatar: "https://www.w3schools.com/howto/img_avatar.png",
+      },
+    },
+  ],
+};
