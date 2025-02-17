@@ -29,6 +29,4 @@ const schema = new Schema(
   { timestamps: true }
 );
 
-mongoose.model;
-
 export const Message = models.Message || model("Message", schema);

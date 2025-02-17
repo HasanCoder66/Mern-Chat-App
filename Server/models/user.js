@@ -31,6 +31,4 @@ const schema = new Schema(
   { timestamps: true }
 );
 
-mongoose.model;
-
 export const User = models.User || model("User", schema);

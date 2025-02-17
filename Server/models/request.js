@@ -21,6 +21,4 @@ const schema = new Schema(
   { timestamps: true }
 );
 
-mongoose.model;
-
 export const Request = models.Request || model("Request", schema);
