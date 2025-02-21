@@ -1,98 +1,91 @@
+import { compare } from "bcrypt";
 import { User } from "../models/user.js";
+import { cookieOptions, sendToken } from "../utils/features.js";
+import { ErrorHandler } from "../utils/utility.js";
 
-// Create a New User and Save it to the Database and Save in cookie
-import jwt from "jsonwebtoken";
-// Make sure you have imported your User model and any necessary middlewares
-
+// Create a New User and Save it to the Database and Save token in cookies
 const createNewUser = async (req, res, next) => {
   try {
-    // Destructure required fields from the request body
     const { name, bio, username, password } = req.body;
-    console.log(name);
-    console.log(bio);
-    console.log(username);
-    console.log(password);
-    // Create an avatar object (this is just an example)
+
     const avatar = {
       public_id: "132465",
-      url: "https://example.com/avatar.png",
+      url: "https://kalsdjfalsdjfoej.cm",
     };
 
-    // Create and save the new user in the database
     const user = await User.create({
       name,
-      bio,
       username,
-      password, // Consider hashing the password before storing it!
+      password,
       avatar,
+      bio,
     });
 
-    // Generate a JWT token.
-    // Ensure you have a JWT_SECRET and JWT_EXPIRES_IN defined in your .env file.
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN || "1d", // Default to 1 day if not provided
-    });
+    user.save();
+    // console.log("user ========>", user);
 
-    // Save the token in a cookie
-    res.cookie("token", token, {
-      httpOnly: true, // Makes the cookie inaccessible to client-side scripts
-      expires: new Date(Date.now() + 24 * 60 * 60 * 1000), // Cookie expires in 1 day
-    });
-
-    // Send a successful response back to the client
-    res.status(201).json({
-      success: true,
-      data: user,
-      token,
-      message: "User created successfully and token stored in cookie",
-    });
+    sendToken(res, user, 201, "User Creatd Successfully..");
   } catch (error) {
-    res.status(400).json({
-      status: 400,
-      message: `Internal error: ${error.message}`,
-    });
+    next(error);
   }
 };
 
-export default createNewUser;
-
-// const createNewUser = async (req, res, next) => {
-//     const { name, bio, username, password , } = req.body;
-//     console.log(name,bio, username, password, avatar)
-//     const avatar = {
-//       public_id: "132465",
-//       url: "https://kalsdjfalsdjfoej.cm",
-//     };
-
-//     // const user =
-//      await User.create({
-//       name,
-//       bio,
-//       username,
-//       password,
-//       avatar,
-//     });
-
-//     // user.save()
-
-//     res.status(201).json({
-//     //   data: user,
-//       message: " User Created Successfullu",
-//     });
-// //   } catch (error) {
-//     // console.log(error);
-//     // res.status(400).json({
-//     //   status: 400,
-//     //   message: `Internol error: ${error}`,
-//     // });
-//   }
-// };
+// Login a User and Save token in cookies
 
 const login = async (req, res, next) => {
   try {
+    const { username, password } = req.body;
+
+    const user = await User.findOne({ username }).select("+password");
+    if (!user) return next(new ErrorHandler("Invalid Username", 404));
+
+    const isMatchedPass = await compare(password, user?.password);
+    if (!isMatchedPass) return next(new ErrorHandler("Invalid Password", 404));
+
+    sendToken(res, user, 200, `Welcome Back ${user.name}`);
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };
 
-export { createNewUser, login };
+const getMyProfile = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user);
+
+    return res.status(200).json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// Logout remove token in cookies
+const logout = async (req, res, next) => {
+  try {
+    return res
+      .status(200)
+      .cookie("token", "", { ...cookieOptions, maxAge: 0 })
+      .json({
+        success: true,
+        message: "User Logout Successfully",
+      });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const searchUser = async (req, res, next) => {
+  try {
+    const { name } = req.query;
+    return res.status(200).json({
+      success: true,
+      message: name,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export { createNewUser, login, getMyProfile, logout, searchUser };
