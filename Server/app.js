@@ -3,6 +3,7 @@ import { connectDb } from "./utils/features.js";
 import dotenv from "dotenv";
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
+// import { createUser } from "./seeders/seed.js";
 
 import userRoute from "./routes/user.js";
 import chatRoute from "./routes/chat.js";
@@ -14,6 +15,7 @@ const mongoURI = process.env.MONGO_URI;
 const port = process.env.PORT || 6000;
 
 connectDb(mongoURI);
+// createUser(10)
 
 // Middlewares ===>
 app.use(express.json());
