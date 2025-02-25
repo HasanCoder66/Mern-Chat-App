@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import { errorMiddleware } from "./middlewares/error.js";
 import cookieParser from "cookie-parser";
 // import { createUser } from "./seeders/seed.js";
+// import { createSingleChats } from "./seeders/seed.js";
 
 import userRoute from "./routes/user.js";
 import chatRoute from "./routes/chat.js";
@@ -16,6 +17,7 @@ const port = process.env.PORT || 6000;
 
 connectDb(mongoURI);
 // createUser(10)
+// createSingleChats(10)
 
 // Middlewares ===>
 app.use(express.json());
