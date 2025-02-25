@@ -430,10 +430,10 @@ const getMessages = async (req, res, next) => {
         .limit(resultPerPage)
         .populate("sender", "name")
         .lean(),
-      Message.countDocuments({ chat: chatId }),
+      Message.countDocuments({ chat: chatId })
     ]);
 
-    const totalPages = Math.ceil(totalMessagesCount / limit);
+    const totalPages = Math.ceil(totalMessagesCount / resultPerPage);
 
     return res.status(200).json({
       success: true,

@@ -1,34 +1,7 @@
-import { faker } from "@faker-js/faker";
-import { User } from "../models/user.js";
+import { faker, simpleFaker } from "@faker-js/faker";
 import { Chat } from "../models/chat.js";
 import { Message } from "../models/message.js";
-
-const createUser = async (numUser) => {
-  try {
-    const usersPromise = [];
-
-    for (let i = 0; i < numUser; i++) {
-      const tempUser = User.create({
-        name: faker.person.fullName(),
-        username: faker.person.lastName(),
-        bio: faker.lorem.sentence(10),
-        password: "password",
-        avatar: {
-          url: faker.image.avatar(),
-          public_id: faker.system.fileName(),
-        },
-      });
-
-      console.log("Users Created", numUser);
-      usersPromise.push(tempUser);
-      process.exit(1);
-    }
-    await Promise.all(usersPromise);
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-};
+import { User } from "../models/user.js";
 
 const createSingleChats = async (numChats) => {
   try {
@@ -67,7 +40,7 @@ const createGroupChats = async (numChats) => {
       });
       const members = [];
 
-      for (let i = 0; i < numMembers; j++) {
+      for (let i = 0; i < numMembers; i++) {
         const randomIndex = Math.floor(Math.random() * users.length);
         const randomUser = users[randomIndex];
 
@@ -88,7 +61,7 @@ const createGroupChats = async (numChats) => {
 
     await Promise.all(chatsPromise);
 
-    console.log("Chats Created", numChats);
+    console.log("Group Chats Created", numChats);
     process.exit(1);
   } catch (error) {
     console.error(error);
@@ -146,7 +119,7 @@ const createMessagesInAChat = async (chatId, numMessages) => {
 
     await Promise.all(messagesPromise);
 
-    console.log("Messages Created", numMessages);
+    console.log("Messages Created in a chat successfully", numMessages);
     process.exit(1);
   } catch (error) {
     console.error(error);
@@ -155,9 +128,8 @@ const createMessagesInAChat = async (chatId, numMessages) => {
 };
 
 export {
-  createUser,
-  createSingleChats,
   createGroupChats,
   createMessages,
   createMessagesInAChat,
+  createSingleChats,
 };
