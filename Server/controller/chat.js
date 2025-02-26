@@ -14,10 +14,7 @@ import { getOtherMembers } from "../lib/helper.js";
 const newGroupChat = async (req, res, next) => {
   try {
     const { members, name } = req.body;
-    console.log(members);
-
-    if (members.length < 2)
-      return next(new ErrorHandler("Group chat must have at least 3 members"));
+    // console.log(members);
 
     const allMembers = [...members, req.user];
     const chat = await Chat.create({
@@ -106,8 +103,6 @@ const addMembers = async (req, res, next) => {
     const { members, chatId } = req.body;
     const chat = await Chat.findById(chatId);
 
-    if (!members || members.length < 1)
-      return next(new ErrorHandler("Please provide members", 400));
     if (!chat) return next(new ErrorHandler("Chat not Found", 404));
 
     if (!chat.groupChat)
@@ -430,7 +425,7 @@ const getMessages = async (req, res, next) => {
         .limit(resultPerPage)
         .populate("sender", "name")
         .lean(),
-      Message.countDocuments({ chat: chatId })
+      Message.countDocuments({ chat: chatId }),
     ]);
 
     const totalPages = Math.ceil(totalMessagesCount / resultPerPage) || 0;
