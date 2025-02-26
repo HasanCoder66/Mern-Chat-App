@@ -6,8 +6,8 @@ import cookieParser from "cookie-parser";
 import {
   createSingleChats,
   createGroupChats,
-//   createMessages,
-//   createMessagesInAChat,
+  createMessages,
+  createMessagesInAChat,
 } from "./seeders/chat.js";
 // import { createUser } from "./seeders/user.js";
 
@@ -21,15 +21,16 @@ const mongoURI = process.env.MONGO_URI;
 const port = process.env.PORT || 6000;
 
 connectDb(mongoURI);
-// createUser(10)
+// createUser(20)
+
 // createSingleChats(10)
 // createGroupChats(10)
 
-// createMessages() 
-// createMessagesInAChat("",50)
+// createMessages(30) 
+// createMessagesInAChat("67becc97aa9d692873d3a3e5",50)
 
 // Middlewares ===>
-app.use(express.json());
+  app.use(express.json());
 app.use(cookieParser());
 // app.use(express.urlencoded());
 app.use("/user", userRoute);
