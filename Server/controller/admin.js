@@ -71,8 +71,6 @@ const allChats = async (req, res, next) => {
   }
 };
 
-
-
 const allMessages = async (req, res, next) => {
   try {
     const messages = await Message.find({})
@@ -87,8 +85,8 @@ const allMessages = async (req, res, next) => {
           content,
           attachments,
           createdAt,
-        //   chat: chat._id,
-        //   groupChat: chat.groupChat,
+          //   chat: chat._id,
+          //   groupChat: chat.groupChat,
           sender: {
             _id: sender._id,
             name: sender._name,
@@ -106,8 +104,12 @@ const allMessages = async (req, res, next) => {
   }
 };
 
-const klm = async (req, res, next) => {
+const getDashboardStats = async (req, res, next) => {
   try {
+    return res.status(200).json({
+      success: true,
+      messages: "Dashboard stats",
+    });
   } catch (error) {
     next(error);
   }
@@ -119,4 +121,4 @@ const nop = async (req, res, next) => {
   }
 };
 
-export { allUsers, allChats, allMessages };
+export { allUsers, allChats, allMessages, getDashboardStats };
