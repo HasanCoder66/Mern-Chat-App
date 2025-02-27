@@ -2,6 +2,10 @@ import mongoose, { Schema, model, Types } from "mongoose";
 
 const schema = new Schema(
   {
+    // groupChat: {
+    //   type: Boolean,
+    //   default: false,
+    // },
     content: String,
     sender: {
       type: Types.ObjectId,
