@@ -1,6 +1,62 @@
 import { User } from "../models/user.js";
 import { Chat } from "../models/chat.js";
 import { Message } from "../models/message.js";
+import { ErrorHandler } from "../utils/utility.js";
+import jwt from "jsonwebtoken";
+import { cookieOptions } from "../utils/features.js";
+import { adminSecretKey } from "../app.js";
+
+const adminLogin = async (req, res, next) => {
+  try {
+    const { secretKey } = req.body;
+    const isMatched = secretKey === adminSecretKey;
+
+    if (!isMatched) return next(new ErrorHandler("Invalid Admin Key", 401));
+
+    const token = jwt.sign(secretKey, process.env.JWT_SECRET);
+
+    return res
+      .status(200)
+      .cookie("admin-token", token, {
+        ...cookieOptions,
+        maxAge: 1000 * 60 * 15,
+      })
+      .json({
+        success: true,
+        message: "Authenticated Successfully, Welcome Boss",
+      });
+  } catch (error) {
+    next(error);
+  }
+};
+
+const adminLogout = async (req, res, next) => {
+  try {
+    return res
+      .status(200)
+      .cookie("admin-token", "", {
+        ...cookieOptions,
+        maxAge: 0,
+      })
+      .json({
+        success: true,
+        message: "Admin Logout Successfully",
+      });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+const getAdminData = async (req, res, next) => {
+  try {
+    return res.status(200).json({
+      admin: true
+    })
+  } catch (error) {
+    next(error)
+  }
+}
 
 const allUsers = async (req, res, next) => {
   try {
@@ -106,19 +162,56 @@ const allMessages = async (req, res, next) => {
 
 const getDashboardStats = async (req, res, next) => {
   try {
+    const [groupCount, messagesCount, usersCount, totalChatsCount] =
+      await Promise.all([
+        Chat.countDocuments({ groupChat: true }),
+        Message.countDocuments(),
+        User.countDocuments(),
+        Chat.countDocuments(),
+      ]);
+
+    const today = new Date();
+    const last7Days = new Date();
+    last7Days.setDate(last7Days.getDate() - 7);
+
+    const last7DaysMessages = await Message.find({
+      createdAt: {
+        $gte: last7Days,
+        $lte: today,
+      },
+    }).select("createdAt");
+
+    const messages = new Array(7).fill(0);
+    const dayInMiliSeconds = 1000 * 60 * 60 * 24;
+
+    last7DaysMessages.forEach((message) => {
+      const indexApprox =
+        (today.getTime() - message.createdAt.getTime()) / dayInMiliSeconds;
+      const index = Math.floor(indexApprox);
+      messages[6 - index]++;
+    });
+    const stats = {
+      groupCount,
+      messagesCount,
+      usersCount,
+      totalChatsCount,
+      messagesChart: messages,
+    };
     return res.status(200).json({
       success: true,
-      messages: "Dashboard stats",
+      stats,
     });
   } catch (error) {
     next(error);
   }
 };
-const nop = async (req, res, next) => {
-  try {
-  } catch (error) {
-    next(error);
-  }
-};
 
-export { allUsers, allChats, allMessages, getDashboardStats };
+export {
+  allUsers,
+  allChats,
+  allMessages,
+  getDashboardStats,
+  adminLogin,
+  adminLogout,
+  getAdminData,
+};

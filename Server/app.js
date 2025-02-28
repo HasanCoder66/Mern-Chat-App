@@ -20,7 +20,9 @@ dotenv.config(); // { path: "./.env" }
 const app = express();
 const mongoURI = process.env.MONGO_URI;
 const port = process.env.PORT || 6000;
-
+export const adminSecretKey =
+  process.env.ADMIN_SECRET_KEY || "3866coder.m.hasan";
+  
 connectDb(mongoURI);
 // createUser(20)
 
