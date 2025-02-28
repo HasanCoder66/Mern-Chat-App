@@ -11,7 +11,9 @@ import { getOtherMembers } from "../lib/helper.js";
 const createNewUser = async (req, res, next) => {
   try {
     const { name, bio, username, password } = req.body;
+    const file = req.file;
 
+    if (!file) return next(new ErrorHandler("Please Upload avatar"));
     const avatar = {
       public_id: "132465",
       url: "https://kalsdjfalsdjfoej.cm",
@@ -232,9 +234,9 @@ const getMyFriends = async (req, res, next) => {
         (friend) => !chat.members.includes(friend._id)
       );
       return res.status(200).json({
-        success:true,
-        friends: availableFriends
-      })
+        success: true,
+        friends: availableFriends,
+      });
     } else {
       return res.status(200).json({
         success: true,

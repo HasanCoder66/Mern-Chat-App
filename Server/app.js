@@ -20,9 +20,10 @@ dotenv.config(); // { path: "./.env" }
 const app = express();
 const mongoURI = process.env.MONGO_URI;
 const port = process.env.PORT || 6000;
-export const adminSecretKey =
-  process.env.ADMIN_SECRET_KEY || "3866coder.m.hasan";
-  
+
+const envMode = process.env.NODE_ENV.trim() || "PRODUCTION";
+const adminSecretKey = process.env.ADMIN_SECRET_KEY || "3866coder.m.hasan";
+
 connectDb(mongoURI);
 // createUser(20)
 
@@ -46,5 +47,9 @@ app.get("/", (req, res) => {
 
 app.use(errorMiddleware);
 app.listen(port, () => {
-  console.log(`server listening on Port ${port} `);
+  console.log(
+    `server listening on Port ${port} in ${envMode} Mode`
+  );
 });
+
+export { envMode, adminSecretKey };
